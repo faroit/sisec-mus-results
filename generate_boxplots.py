@@ -47,8 +47,22 @@ if __name__ == '__main__':
         sns.boxplot,
         'estimate_name',
         "score",
+        "subset",
         showmeans=False,
         showfliers=False,
-    ))
-    #.set_xticklabels(rotation='vertical')
+    ).add_legend())
+    plt.show()
+
+    # lets get to see how difficult the songs are in general
+    df = df.query(
+        'metric == "SDR" and target_name == "vocals" and subset == "Test"'
+    )
+    sns.boxplot(
+        'track_id',
+        "score",
+        data=df,
+        showmeans=False,
+        showfliers=False,
+    )
+
     plt.show()
