@@ -1,0 +1,7 @@
+method_name:  Grais3
+short:        GRA3
+authors:      Emad M. Grais, Gerard Roma, Andrew J. R. Simpson, Mark D. Plumbley
+affiliation:  University of Surrey, United Kingdom
+email:        grais@surrey.ac.uk
+description:  >
+  Deep neural network (DNN) based method to generate soft masks that are used to separate the sources

@@ -1,0 +1,8 @@
+method_name:  Stoeter1
+short:        STO1
+authors:      Fabian-Robert Stöter, Bernd Edler
+affiliation:  International Audio Laboratories Erlangen
+email:        fabian-robert.stoeter@audiolabs-erlangen.de
+description:  >
+  Deep neural network (DNN) based method using overlapped STFT frames on input
+  and output.

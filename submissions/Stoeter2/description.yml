@@ -1,0 +1,8 @@
+method_name:  Stoeter2
+short:        STO2
+authors:      Fabian-Robert Stöter, Bernd Edler
+affiliation:  International Audio Laboratories Erlangen
+email:        fabian-robert.stoeter@audiolabs-erlangen.de
+description:  >
+  Deep neural network (DNN) based method using Common Fate Transform
+  representation on network input and output.

@@ -1,0 +1,8 @@
+method_name:  Uhlich1
+short:        UHL1
+authors:      Stefan Uhlich
+affiliation:  Sony
+email:        Stefan.Uhlich@eu.sony.com
+description:  >
+  Set of single-channel feed-forward neural networks trained on PCA features
+  with 4 ReLU layers and multichannel Wiener filtering

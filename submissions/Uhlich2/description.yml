@@ -1,0 +1,8 @@
+method_name:  Uhlich2
+short:        UHL2
+authors:      Stefan Uhlich
+affiliation:  Sony
+email:        Stefan.Uhlich@eu.sony.com
+description:  >
+  Set of stereo LSTM networks (each with 3 bi-directional LSTM layers and a
+  final ReLU layer) with multichannel Wiener filtering
