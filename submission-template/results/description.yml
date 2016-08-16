@@ -1,0 +1,12 @@
+method_name:        Long_method_name_without_spaces
+short:              XYZ1
+authors:            A. List, Of. Authors
+affiliation:        University of Lorem Ipsum
+email:              contact@author.com
+is_supervised:      True
+uses_augmentation:  True
+references:
+  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2016
+  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2015
+description:  >
+  Here we describe the method in detail.
