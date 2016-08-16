@@ -33,11 +33,13 @@ if __name__ == '__main__':
     df[['track_id']] = df[['track_id']].apply(pd.to_numeric)
     df['subset'] = np.where(df['track_id'] >= 51, 'Dev', 'Test')
 
+    # show vocals/acc for now
+    df = df.query('target_name == "vocals" or target_name == "accompaniment"')
     g = sns.FacetGrid(
         df,
         col="target_name",
         row="metric",
-        col_order=['vocals', 'accompaniment', 'drums', 'bass', 'other'],
+        col_order=['vocals', 'accompaniment'],
         sharex=False,
         sharey=False,
         legend_out=True,
@@ -48,15 +50,19 @@ if __name__ == '__main__':
         'estimate_name',
         "score",
         "subset",
+        hue_order=['Dev', 'Test'],
         showmeans=False,
+        notch=True,
         showfliers=False,
     ).add_legend())
+
     plt.show()
 
     # lets get to see how difficult the songs are in general
     df = df.query(
         'metric == "SDR" and target_name == "vocals" and subset == "Test"'
     )
+
     sns.boxplot(
         'track_id',
         "score",
