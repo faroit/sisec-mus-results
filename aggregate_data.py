@@ -19,7 +19,7 @@ def get_files():
         description_file = os.path.join(
             submissions_dir, submission, 'description.yml'
         )
-        stream = file(description_file, 'r')
+        stream = open(description_file, 'r')
         metadata = yaml.load(stream)
 
         types = ('*.pandas', '*.mat')
