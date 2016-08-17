@@ -1,7 +1,12 @@
-method_name:  Jeong2
-short:        JEO2
-authors:      Il-Young Jeong
-affiliation:  Seoul National University
-email:        finejuly@snu.ac.kr
+method_name:        Jeong2
+short:              JEO2
+authors:            Il-Young Jeong
+affiliation:        Seoul National University
+email:              finejuly@snu.ac.kr
+is_supervised:      False
+uses_augmentation:  False
+references:
+  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2016
+  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2015
 description:  >
   ???

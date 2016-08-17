@@ -1,8 +1,13 @@
-method_name:  Uhlich1
-short:        UHL1
-authors:      Stefan Uhlich
-affiliation:  Sony
-email:        Stefan.Uhlich@eu.sony.com
+method_name:        Uhlich1
+short:              UHL1
+authors:            Stefan Uhlich
+affiliation:        Sony
+email:              Stefan.Uhlich@eu.sony.com
+is_supervised:      True
+uses_augmentation:  True
+references:
+  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2016
+  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2015
 description:  >
   Set of single-channel feed-forward neural networks trained on PCA features
   with 4 ReLU layers and multichannel Wiener filtering

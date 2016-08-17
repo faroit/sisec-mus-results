@@ -1,7 +1,14 @@
-method_name:  Kong
-short:        KON1
-authors:
-affiliation:
-email:
+method_name:        RNN_QK
+short:              KON1
+authors:            Qiuqiang Kong
+affiliation:        CVSSP, University of Surrey
+email:              q.kong@surrey.ac.uk
+is_supervised:      True
+uses_augmentation:  False
+references:
+  - Huang, Po Sen, et al. Joint optimization of masks and deep recurrent neural networks for monaural source separation.
 description:  >
-  RNN
+  Uses spectrogram, window_size=1024, 11 frames as a segment. Apply RNN on the 11*513 spectrogram.
+  Structure: (11*513) -> 500 rnn -> 500 rnn -> (500 dense left & 500 dense right).
+  Objective: ||mask*y_pred - y_gt||
+  Optimizer: Adam, lr=1e-3, epoch=200
