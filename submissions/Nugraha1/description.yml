@@ -1,11 +1,12 @@
-method_name:  Nugraha1
-short:        NUG1
-authors:
-affiliation:
-email:
+method_name:        Multichannel_separation_with_single_DNN_and_simplified-weighted_EM_updates
+short:              NUG1
+authors:            Aditya Arie Nugraha, Antoine Liutkus, Emmanuel Vincent
+affiliation:        Inria
+email:              aditya.nugraha@inria.fr
 is_supervised:      True
-uses_augmentation:  True
+uses_augmentation:  False
 references:
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2016
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2015
+  - A. A. Nugraha, A. Liutkus, and E. Vincent, "Multichannel music separation with deep neural networks," in Proc. 24th European Signal Processing Conference, Budapest, Hungary, Aug. 2016.
+  - A. A. Nugraha, A. Liutkus and E. Vincent, "Multichannel audio source separation with deep neural networks," in IEEE/ACM Transactions on Audio, Speech, and Language Processing, vol. 24, no. 9, pp. 1652-1664, Sept. 2016.
 description:  >
+  In this implementation of DNN-based multichannel source separation, the source spectra are estimated once using a DNN and used to derive a multichannel filter through an iterative expectation-maximization (EM) algorithm with simplified-weighted spatial parameter updates.
