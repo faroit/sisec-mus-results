@@ -4,6 +4,14 @@ import dsdtools
 import yaml
 
 
+def add_supervised(row, metadata):
+    return metadata[row['estimate_name']]['is_supervised']
+
+
+def add_augmentation(row, metadata):
+    return metadata[row['estimate_name']]['uses_augmentation']
+
+
 def get_files():
     # traverse root directory, and list directories as dirs and files as files
     submissions_dir = "submissions"
@@ -28,12 +36,23 @@ def get_files():
 
 
 def aggregrate(dsd):
+    metadata_dict = {}
     for result_files, metadata in get_files():
+        short_name = metadata['short']
+        metadata_dict[metadata['short']] = metadata
         for result in result_files:
             if os.path.splitext(result)[1] == '.mat':
-                short_name = metadata['short']
                 data.import_mat(result, estimate_name=short_name)
 
+    # add metadata
+    data.df['is_supervised'] = \
+        data.df.apply(
+            lambda row: add_supervised(row, metadata_dict), axis=1
+        )
+    data.df['uses_augmentation'] = \
+        data.df.apply(
+            lambda row: add_augmentation(row, metadata_dict), axis=1
+        )
 
 if __name__ == '__main__':
 
