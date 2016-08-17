@@ -1,11 +1,12 @@
-method_name:  Durrien
-short:        DUR
+method_name:        Durrieu
+short:              DUR
 authors:
 affiliation:
 email:
 is_supervised:      False
 uses_augmentation:  False
 references:
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2016
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2015
+  - Jean-Louis Durrieu, Bertrand David, and Gäel Richard, “A musically motivated mid-level representation for pitch estimation and musical audio source separation,” IEEE Journal on Selected Topics on Signal Processing, vol. 5, no. 6, pp. 1180–1191, October 2011.
 description:  >
+  systems using a source-filter model for the voice and a Non-negative Matrix Factorization (NMF)
+  model for the accompaniment2.
