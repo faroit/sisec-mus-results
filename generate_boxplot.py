@@ -65,6 +65,7 @@ if __name__ == '__main__':
         showmeans=False,
         notch=True,
         showfliers=False,
+        width=0.75
     ).add_legend())
 
     plt.show()
