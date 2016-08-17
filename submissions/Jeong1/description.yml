@@ -1,12 +1,11 @@
-method_name:        Jeong1
+method_name:        RPCA_with_weighted_l1_norm
 short:              JEO1
-authors:            Il-Young Jeong
-affiliation:        Seoul National University
+authors:            Il-Young Jeong and Kyogu Lee
+affiliation:        MARG, Seoul National University
 email:              finejuly@snu.ac.kr
-is_supervised:      False
+is_supervised:      True
 uses_augmentation:  False
 references:
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2016
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2015
+  - I.-Y. Jeong and K. Lee, Singing voice separation using RPCA with weighted l1-norm (in preparation for LVAICA 2017. title may be modified)
 description:  >
-  ???
+  apply RPCA with weighted l1 norm, whose weight parameter (lambda) between nuclear norm and l1 norm is set differently for each matrix component. we choose the value of lambda for each frequency bin f to be var(A(f))/var(V(f)), where A and V are the spectrogram of accompaniment and singing voice, respectively.
