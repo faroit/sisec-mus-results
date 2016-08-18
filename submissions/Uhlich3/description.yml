@@ -1,12 +1,16 @@
-method_name:        Uhlich3
+method_name:        COMBO_FNN_LSTM
 short:              UHL3
-authors:            Stefan Uhlich
-affiliation:        Sony
-email:              Stefan.Uhlich@eu.sony.com
+authors:            Stefan Uhlich, Marcello Porcu, Franck Giron, Michael Enenkl, Thomas Kemp, Yuki Mitsufuji, Naoya Takahashi
+affiliation:        Sony Corporation
+email:              stefan.uhlich@eu.sony.com, yuhki.mitsufuji@jp.sony.com
 is_supervised:      True
 uses_augmentation:  True
 references:
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2016
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2015
+  - S. Uhlich, M. Porcu, F. Giron, M. Enenkl, T. Kemp, Y. Mitsufuji, N. Takahashi, Combining DNNs for Enhanced Music Source Separation, to appear
+  - A. A. Nugraha, A. Liutkus, and E. Vincent. "Multichannel music separation with deep neural networks." EUSIPCO, 2016.
 description:  >
-   Blending of outputs of "UHL1" and "UHL2"
+  This system is doing a linear combination of the systems "UHL1" and "UHL2" as follows:
+  
+  \hat S_i,UHL3(m,k) = \lambda * \hat S_i,UHL1(m,k) + (1-\lambda) * \hat S_i,UHL2(m,k)
+  
+  for all i = {"Bass", "Drums", "Other", "Vocals"} where \hat S_i,UHL1(m,k) is the raw output of the feed-forward network and \hat S_i,UHL2(m,k) is the raw output of the LSTM network. After the combination, we compute a multi-channel Wiener filter to reduce interference and artefacts (cf. Nugraha "weighted scheme").

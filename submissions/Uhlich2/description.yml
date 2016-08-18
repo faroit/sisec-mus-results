@@ -1,13 +1,17 @@
-method_name:        Uhlich2
+method_name:        LSTM_NN
 short:              UHL2
-authors:            Stefan Uhlich
-affiliation:        Sony
-email:              Stefan.Uhlich@eu.sony.com
+authors:            Stefan Uhlich, Marcello Porcu, Franck Giron, Michael Enenkl, Thomas Kemp, Yuki Mitsufuji, Naoya Takahashi
+affiliation:        Sony Corporation
+email:              stefan.uhlich@eu.sony.com, yuhki.mitsufuji@jp.sony.com
 is_supervised:      True
 uses_augmentation:  True
 references:
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2016
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2015
+  - S. Uhlich, M. Porcu, F. Giron, M. Enenkl, T. Kemp, Y. Mitsufuji, N. Takahashi, Combining DNNs for Enhanced Music Source Separation, to appear
+  - A. A. Nugraha, A. Liutkus, and E. Vincent. "Multichannel music separation with deep neural networks." EUSIPCO, 2016.
 description:  >
-  Set of stereo LSTM networks (each with 3 bi-directional LSTM layers and a
-  final ReLU layer) with multichannel Wiener filtering
+  In our second approach, we use a (stereo) recurrent neural network architecture with bi-directional LSTM (BLSTM) layers. It is trained solemnly on SiSEC DEV and uses data augmentation to avoid overfitting problems. In particular, we use the following augmentations (done on-the-fly to prepare one mini-batch):
+  – random swapping left/right channel for each instrument,
+  – random scaling with amplitudes from [0.25,1.25],
+  – random chunking into sequences for each instrument, and,
+  – random combination of instruments from different mixtures
+  Finally, the four LSTM outputs are combined by a multi-channel Wiener filter. We estimate the PSDs and spatial covariance matrices for each instrument as described by Nugraha ("weighted scheme").
