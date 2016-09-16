@@ -1,13 +1,12 @@
-method_name:        Uhlich1
+method_name:        Feed_Forward_NN
 short:              UHL1
-authors:            Stefan Uhlich
-affiliation:        Sony
-email:              Stefan.Uhlich@eu.sony.com
+authors:            Stefan Uhlich, Marcello Porcu, Franck Giron, Michael Enenkl, Thomas Kemp, Yuki Mitsufuji, Naoya Takahashi
+affiliation:        Sony Corporation
+email:              stefan.uhlich@eu.sony.com, yuhki.mitsufuji@jp.sony.com
 is_supervised:      True
 uses_augmentation:  True
 references:
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2016
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2015
+  - S. Uhlich, F. Giron, and Y. Mitsufuji. "Deep neural network based instrument extraction from music." ICASSP, 2015.
+  - A. A. Nugraha, A. Liutkus, and E. Vincent. "Multichannel music separation with deep neural networks." EUSIPCO, 2016.
 description:  >
-  Set of single-channel feed-forward neural networks trained on PCA features
-  with 4 ReLU layers and multichannel Wiener filtering
+  In this approach, we train for each instrument a (single-channel) ReLU network with K=4 layers from P = 12e6 training samples, which are pre-processed with a PCA. The training material comes from three different sources: an internal instrument loop catalogue, non-bleeding stems from MedleyDB and stems from SiSEC DEV. One training sample is created by mixing random audio from each instrument (with random amplitudes). Finally, the four FNN outputs are combined by a multi-channel Wiener filter. We estimate the PSDs and spatial covariance matrices for each instrument as described by Nugraha ("weighted scheme").
