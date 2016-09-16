@@ -111,7 +111,7 @@ if __name__ == '__main__':
 
         f.set_tight_layout(True)
         f.savefig(
-            args.target + measure + ".eps",
+            args.target + measure + ".pdf",
             bbox_inches='tight',
             # bbox_extra_artists=(lgd,),
             dpi=300
