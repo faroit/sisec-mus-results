@@ -1,11 +1,10 @@
 import pandas as pd
-import argparse
 import numpy as np
-from bokeh.charts import BoxPlot, output_file, show
-from bokeh.io import output_file, curdoc
+from bokeh.plotting import figure
 from bokeh.layouts import row, column
-from bokeh.models.widgets import Dropdown
-from bokeh.models import ColumnDataSource, DataRange1d, Select
+from bokeh.models import ColumnDataSource
+from bokeh.models.widgets import Select
+from bokeh.io import curdoc
 
 df = pd.read_pickle("out.pandas")
 
@@ -13,11 +12,10 @@ subsets = ['Dev', 'Test']
 measures = ['SDR', 'ISR', 'SIR', 'SAR']
 targets = ['vocals', 'accompaniment', 'drums', 'other']
 
-
 # reshape data
 df = pd.melt(
    df,
-   id_vars=['track_id', 'track_name', 'target_name', 'estimate_name', 'is_supervised'],
+   id_vars=['track_id', 'target_name', 'estimate_name', 'is_supervised'],
    value_vars=measures,
    var_name='metric',
    value_name='score'
@@ -42,8 +40,32 @@ df_measure = df[
     (df.subset == subset)
 ]
 
+source = ColumnDataSource(
+    data=dict(x=[], y=[], metric=[], target=[], subset=[])
+)
 
-def update_plot(attrname, old, new):
+p = figure(
+    plot_height=600,
+    plot_width=700,
+    title="Fu",
+    tools="pan,wheel_zoom,box_select,lasso_select,reset",
+    y_range=(-10, 10),
+    x_range=(0, 10)
+)
+p.circle(
+    x="x",
+    y="y",
+    source=source,
+    size=7,
+    color="orange",
+    line_color="#3A5785",
+    fill_alpha=1
+)
+
+controls = [subset_select, measure_select, target_select]
+
+
+def update():
     subset = subset_select.value
     measure = measure_select.value
     target = target_select.value
@@ -52,30 +74,25 @@ def update_plot(attrname, old, new):
         (df.target_name == target) &
         (df.subset == subset)
     ]
-    layout.children[0] = make_plot(df_measure)
+    df_measure.fillna(0, inplace=True)
+    p.xaxis.axis_label = "Estimate"
+    p.yaxis.axis_label = measure_select.value
 
-
-def make_plot(df_measure):
-    p = BoxPlot(
-        df_measure,
-        values='score',
-        label='estimate_name',
-        color='estimate_name',
-        title="Comparison over all methods",
-        outliers=False,
-        plot_width=1024,
+    d = ColumnDataSource(data=df_measure)
+    source.data = dict(
+        x=d.data['estimate_name'],
+        y=d.data['score'],
+        metric=d.data["metric"],
+        target=d.data["target_name"],
+        subset=d.data["subset"],
     )
 
-    return p
+update()
 
-plot = make_plot(df_measure)
+for control in controls:
+    control.on_change('value', lambda attr, old, new: update())
 
-subset_select.on_change('value', update_plot)
-measure_select.on_change('value', update_plot)
-target_select.on_change('value', update_plot)
-
-controls = column(subset_select, measure_select, target_select)
-layout = row(plot, controls)
+layout = row(p, column(*controls))
 
 curdoc().add_root(layout)
 curdoc().title = "SISEC MUS 2016"

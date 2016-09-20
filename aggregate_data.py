@@ -58,4 +58,9 @@ if __name__ == '__main__':
 
     data = dsdtools.evaluate.Data()
     aggregrate(data)
+    # aggregate over each method and track, to remove the sample column
+    # this results in less columns and should speed up the plotting
+    data.df = data.df.groupby(
+        ['estimate_name', 'track_id', 'target_name']
+    ).mean().reset_index()
     data.to_pickle("out.pandas")
