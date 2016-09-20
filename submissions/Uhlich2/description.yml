@@ -10,8 +10,8 @@ references:
   - A. A. Nugraha, A. Liutkus, and E. Vincent. "Multichannel music separation with deep neural networks." EUSIPCO, 2016.
 description:  >
   In our second approach, we use a (stereo) recurrent neural network architecture with bi-directional LSTM (BLSTM) layers. It is trained solemnly on SiSEC DEV and uses data augmentation to avoid overfitting problems. In particular, we use the following augmentations (done on-the-fly to prepare one mini-batch):
-  – random swapping left/right channel for each instrument,
-  – random scaling with amplitudes from [0.25,1.25],
-  – random chunking into sequences for each instrument, and,
-  – random combination of instruments from different mixtures
+  - random swapping left/right channel for each instrument,
+  - random scaling with amplitudes from [0.25,1.25],
+  - random chunking into sequences for each instrument, and,
+  - random combination of instruments from different mixtures
   Finally, the four LSTM outputs are combined by a multi-channel Wiener filter. We estimate the PSDs and spatial covariance matrices for each instrument as described by Nugraha ("weighted scheme").

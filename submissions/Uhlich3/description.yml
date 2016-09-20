@@ -10,7 +10,7 @@ references:
   - A. A. Nugraha, A. Liutkus, and E. Vincent. "Multichannel music separation with deep neural networks." EUSIPCO, 2016.
 description:  >
   This system is doing a linear combination of the systems "UHL1" and "UHL2" as follows:
-  
+
   \hat S_i,UHL3(m,k) = \lambda * \hat S_i,UHL1(m,k) + (1-\lambda) * \hat S_i,UHL2(m,k)
-  
+
   for all i = {"Bass", "Drums", "Other", "Vocals"} where \hat S_i,UHL1(m,k) is the raw output of the feed-forward network and \hat S_i,UHL2(m,k) is the raw output of the LSTM network. After the combination, we compute a multi-channel Wiener filter to reduce interference and artefacts (cf. Nugraha "weighted scheme").
