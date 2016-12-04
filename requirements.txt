@@ -1,5 +1,4 @@
 git+https://github.com/faroit/dsdtools.git@WIP_eval
-git+https://github.com/faroit/mir_eval.git@bss_eval_images_framewise
 pandas
 seaborn
 matplotlib
