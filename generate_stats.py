@@ -23,11 +23,16 @@ if __name__ == '__main__':
 
     # reshape data
     df = pd.melt(
-       df,
-       id_vars=['track_id', 'track_name', 'target_name', 'estimate_name', 'is_supervised'],
-       value_vars=measures,
-       var_name='metric',
-       value_name='score'
+        df,
+        id_vars=[
+            'track_id',
+            'track_name',
+            'target_name',
+            'estimate_name',
+            'is_supervised'],
+        value_vars=measures,
+        var_name='metric',
+        value_name='score'
     )
 
     # fetch track_id
