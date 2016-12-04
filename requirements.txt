@@ -1,4 +1,3 @@
-git+https://github.com/faroit/dsdtools.git@WIP_eval
 pandas
 seaborn
 matplotlib

@@ -46,15 +46,23 @@ if __name__ == '__main__':
 
     # fetch track_id
     df['track_id'] = df['track_id'].astype(np.int16)
-    df['subset'] = np.where(df['track_id'] >= 51, 0, 1)
+    df['is_dev'] = np.where(df['track_id'] >= 51, 0, 1)
     df['target_id'] = df['target_name'].astype('category').cat.codes
-    df['estimate_id'] = df['estimate_name'].astype('category').cat.codes
+    df['method_id'] = df['estimate_name'].astype('category').cat.codes
     df['metric_id'] = df['metric'].astype('category').cat.codes
 
     df.to_csv(
-        path_or_buf="out.csv",
+        path_or_buf="sisec_mus_2017.csv",
         sep=",",
         header=True,
+        columns=[
+            'track_id',
+            'is_dev',
+            'target_id',
+            'method_id',
+            'metric_id',
+            'score'
+        ],
         index=False,
         index_label=None
     )
