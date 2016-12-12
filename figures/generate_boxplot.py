@@ -124,10 +124,10 @@ if __name__ == '__main__':
             ax=ax
         )
 
-        plt.setp(ax.get_xticklabels(), rotation=90)
+        plt.setp(ax.get_xticklabels(), rotation=90, fontsize=19)
 
         lgd = ax.legend(
-            loc='upper right',
+            loc='lower right',
             # bbox_to_anchor=(0.5, -0.22),
             bbox_transform=BlendedGenericTransform(
                 f.transFigure, ax.transAxes
@@ -136,7 +136,7 @@ if __name__ == '__main__':
         )
 
         ax.set_xlabel('')
-        ax.set_ylabel(measure)
+        ax.set_ylabel(measure + ' in dB')
 
         f.set_tight_layout(True)
         f.savefig(
