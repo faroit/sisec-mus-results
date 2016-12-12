@@ -87,10 +87,7 @@ if __name__ == '__main__':
     df = df[df.target_name == args.target].dropna()
 
     # get the list of estimate names and sort them
-    estimate_names = sorted(df.estimate_name.unique().tolist())
-
-    # bring IBM to the start position
-    estimate_names.insert(0, estimate_names.pop(estimate_names.index('IBM')))
+    # estimate_names = sorted(df.estimate_name.unique().tolist())
 
     sns.set_style("darkgrid", {
         "axes.facecolor": "0.925",
@@ -106,6 +103,9 @@ if __name__ == '__main__':
 
     for measure in measures:
         df_measure = df[df.metric == measure]
+        df_sort_by = df.query('metric == measure and subset == Test')
+        estimate_names = df_sort_by.score.groupby(df_sort_by.estimate_name).median().order().index.tolist()
+
         f, ax = plt.subplots(1, 1, figsize=fig_size)
 
         ax = sns.boxplot(
