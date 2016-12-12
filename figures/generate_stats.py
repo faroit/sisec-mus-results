@@ -104,8 +104,15 @@ alphamap = colors.BoundaryNorm(boundaries=bounds, ncolors=256)
 
 axis_labels = [fit_test[2].colnames[0]] + list(fit_test[2].rownames)
 
-sorted_indices = sorted(range(len(axis_labels)), key=axis_labels.__getitem__)
-sorted_indices.insert(0, sorted_indices.pop(axis_labels.index('IBM')))
+df_sort_by = df_sdr_vocals_test[
+   (df_sdr_vocals_test.metric == 'SDR') & (df_sdr_vocals_test.subset == "Test")
+]
+
+sorted_estimates = df_sort_by.score.groupby(
+   df_sort_by.estimate_name
+).median().order().index.tolist()
+
+sorted_indices = [axis_labels.index(label) for label in sorted_estimates]
 
 pairwise = pairwise[sorted_indices, :]
 pairwise = pairwise[:, sorted_indices]

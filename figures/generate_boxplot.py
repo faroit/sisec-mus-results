@@ -103,7 +103,9 @@ if __name__ == '__main__':
 
     for measure in measures:
         df_measure = df[df.metric == measure]
-        df_sort_by = df.query('metric == measure and subset == Test')
+
+        # sort by Test Score
+        df_sort_by = df[(df.metric == measure) & (df.subset == "Test")]
         estimate_names = df_sort_by.score.groupby(df_sort_by.estimate_name).median().order().index.tolist()
 
         f, ax = plt.subplots(1, 1, figsize=fig_size)
