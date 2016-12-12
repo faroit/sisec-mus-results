@@ -40,7 +40,7 @@ if __name__ == '__main__':
 
     # lets get to see how difficult the songs are in general
     df = df.query(
-        'metric == "SDR" and target_name == "vocals" and subset == "Test"'
+        'metric == "SDR" and target_name == "vocals" and subset == "Dev"'
     )
 
     sns.boxplot(

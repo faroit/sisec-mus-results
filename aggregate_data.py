@@ -67,6 +67,7 @@ class Data(object):
             for track in range(data.shape[1]):
                 tdata = data[0, track][0, 0]
                 ibm_tdata = ibm_ndata[subset]['results'][0, track][0, 0]
+
                 for target in [
                     'vocals', 'drums', 'other', 'bass', 'accompaniment'
                 ]:
@@ -98,8 +99,11 @@ class Data(object):
                                     self.tracklist.index(match[0])
                                 )
                         for frame in range(frames):
-                            if np.isnan(ibm_tdata[target][0]['sdr'][0][0][frame]):
-                                 continue
+                            # remove nan values
+                            if np.isnan(
+                                ibm_tdata[target][0]['sdr'][0][0][frame]
+                            ):
+                                continue
 
                             series = self.row2series(
                                 track_id=track_id,
