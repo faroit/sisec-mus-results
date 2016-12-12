@@ -54,14 +54,25 @@ class Data(object):
         ndata = {n.title(): mdata[n][0, 0] for n in mdata.dtype.names}
         s = []
 
+        ibm_filename = 'submissions/IBM/results/Ideal.mat'
+
+        ibm_mat = scipy.io.loadmat(ibm_filename)
+        ibm_mdata = ibm_mat['result']
+        ibm_ndata = {
+            n.title(): ibm_mdata[n][0, 0] for n in ibm_mdata.dtype.names
+        }
+
         for subset, subset_data in ndata.items():
             data = subset_data['results']
             for track in range(data.shape[1]):
                 tdata = data[0, track][0, 0]
+                ibm_tdata = ibm_ndata[subset]['results'][0, track][0, 0]
                 for target in [
                     'vocals', 'drums', 'other', 'bass', 'accompaniment'
                 ]:
-                    frames = len(tdata[target][0]['sdr'][0][0])
+                    frames = len(ibm_tdata[target][0]['sdr'][0][0])
+                    o_frames = len(tdata[target][0]['sdr'][0][0])
+                    frames = min(frames, o_frames)
 
                     has_nan_values = []
                     for metric in ['sdr', 'isr', 'sir', 'sar']:
@@ -87,6 +98,9 @@ class Data(object):
                                     self.tracklist.index(match[0])
                                 )
                         for frame in range(frames):
+                            if np.isnan(ibm_tdata[target][0]['sdr'][0][0][frame]):
+                                 continue
+
                             series = self.row2series(
                                 track_id=track_id,
                                 track_name=tdata['name'][0],
@@ -165,4 +179,5 @@ if __name__ == '__main__':
 
     # add fix because track 43 has an error in the download
     data.df = data.df.query('track_id != 43')
+
     data.to_pickle("sisec_mus_2017.pandas")
