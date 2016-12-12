@@ -104,9 +104,11 @@ if __name__ == '__main__':
     for measure in measures:
         df_measure = df[df.metric == measure]
 
-        # sort by Test Score
+        # sort by median of test score
         df_sort_by = df[(df.metric == measure) & (df.subset == "Test")]
-        estimate_names = df_sort_by.score.groupby(df_sort_by.estimate_name).median().order().index.tolist()
+        estimate_names = df_sort_by.score.groupby(
+            df_sort_by.estimate_name
+        ).median().order().index.tolist()
 
         f, ax = plt.subplots(1, 1, figsize=fig_size)
 
@@ -123,8 +125,9 @@ if __name__ == '__main__':
             width=0.75,
             ax=ax
         )
-
-        plt.setp(ax.get_xticklabels(), rotation=90, fontsize=19)
+        if measure == 'SDR':
+            ax.set_ylim([-13.5, 15.5])
+        plt.setp(ax.get_xticklabels(), rotation=45, fontsize=19)
 
         lgd = ax.legend(
             loc='lower right',

@@ -164,25 +164,25 @@ sns.set_style("darkgrid", {
 
 f, ax = plt.subplots(1, 1, figsize=fig_size)
 
-# sns.set('paper')
 ax = sns.heatmap(
-    pairwise,
+    np.flipud(pairwise),
     ax=ax,
     square=True,
     cbar=True,
     linewidths=.1,
     linecolor='lightgrey',
-    mask=mask,
+    mask=np.flipud(mask),
+    norm=alphamap,
     cmap='OrRd',
     cbar_kws={
         'ticks': bounds,
         'label': 'p-value'
     },
-    yticklabels=np.array(axis_labels)[sorted_indices].tolist(),
+    yticklabels=np.array(axis_labels)[sorted_indices[::-1]].tolist(),
     xticklabels=np.array(axis_labels)[sorted_indices].tolist()
 )
 
-ax.text(1, 2, 'Test', bbox={
+ax.text(1, 22, 'Test', bbox={
    'edgecolor': "none",
    'facecolor': 'white',
    'alpha': 0.5,
@@ -190,7 +190,7 @@ ax.text(1, 2, 'Test', bbox={
 },  fontsize=26)
 
 ax.text(
-   20, 20, 'Dev',
+   20, 2, 'Dev',
    bbox={'edgecolor': "none", 'facecolor': 'white', 'alpha': 0.5, 'pad': 5},
    fontsize=26
 )
@@ -200,7 +200,7 @@ plt.setp(ax.get_xticklabels(), rotation=90)
 
 f.set_tight_layout(True)
 f.savefig(
-   "wilcox.pdf",
+   "wilcox_voc_sdr.pdf",
    bbox_inches='tight',
-   dpi=30
+   dpi=300
 )
