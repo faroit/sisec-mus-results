@@ -18,6 +18,12 @@ if __name__ == '__main__':
 
     df = pd.read_pickle(args.result_file)
 
+    # aggregate over each method and track, to remove the sample column
+    # this results in less columns and should speed up the plotting
+    df = df.groupby(
+        ['estimate_name', 'track_id', 'target_name']
+    ).mean().reset_index()
+
     measures = ['SDR', 'ISR', 'SIR', 'SAR']
 
     # reshape data
@@ -44,13 +50,14 @@ if __name__ == '__main__':
     with open("headers.json", 'w') as f:
         json.dump(headers, f)
 
-    # fetch track_id
+    # Encode names into IDs
     df['track_id'] = df['track_id'].astype(np.int16)
     df['is_dev'] = np.where(df['track_id'] >= 51, 0, 1)
     df['target_id'] = df['target_name'].astype('category').cat.codes
     df['method_id'] = df['estimate_name'].astype('category').cat.codes
     df['metric_id'] = df['metric'].astype('category').cat.codes
 
+    # write out headers
     df.to_csv(
         path_or_buf="sisec_mus_2017.csv",
         sep=",",

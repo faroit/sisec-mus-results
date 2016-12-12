@@ -1,5 +1,9 @@
 #### joe made this: http://goel.io/joe
 
+data/
+*.csv
+*.pandas
+
 #####=== Python ===#####
 
 # Byte-compiled / optimized / DLL files
@@ -60,4 +64,3 @@ docs/_build/
 
 # PyBuilder
 target/
-

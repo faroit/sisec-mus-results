@@ -135,7 +135,7 @@ def get_files():
             yield glob.glob(os.path.join(results_dir, ext)), metadata
 
 
-def aggregrate(dsd):
+def aggregrate(data):
     metadata_dict = {}
     for result_files, metadata in get_files():
         short_name = metadata['short']
@@ -154,13 +154,15 @@ def aggregrate(dsd):
             lambda row: add_augmentation(row, metadata_dict), axis=1
         )
 
+    data.df['is_dev'] = np.where(data.df['track_id'] >= 51, False, True)
+    return data
+
+
 if __name__ == '__main__':
 
     data = Data()
-    aggregrate(data)
-    # aggregate over each method and track, to remove the sample column
-    # this results in less columns and should speed up the plotting
-    data.df = data.df.groupby(
-        ['estimate_name', 'track_id', 'target_name']
-    ).mean().reset_index()
+    data = aggregrate(data)
+
+    # add fix because track 43 has an error in the download
+    data.df = data.df.query('track_id != 43')
     data.to_pickle("sisec_mus_2017.pandas")
