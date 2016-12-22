@@ -5,9 +5,9 @@ affiliation:        International Audio Laboratories Erlangen
 email:              fabian-robert.stoeter@audiolabs-erlangen.de
 is_supervised:      True
 uses_augmentation:  False
+code:               https://github.com/aliutkus/commonfate
 references:
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2016
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2015
+  - F.-R. Stöter, A. Liutkus, R. Badeau, B. Edler, and P. Magron, “Common Fate Model for Unison source Separation,” in Proc. ICASSP, 2016.
 description:  >
   Deep neural network (DNN) based method using Common Fate Transform
   representation on network input and output.
