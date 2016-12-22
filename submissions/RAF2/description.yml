@@ -1,11 +1,13 @@
 method_name:  Rafii2
 short:        RAF2
-authors:
-affiliation:
-email:
+authors:            Zafar Raffi
+affiliation:        Gracenote
+email:              zrafii@gracenote.com
+code:               http://zafarrafii.com/repet.html
 is_supervised:      False
 uses_augmentation:  False
 references:
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2016
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2015
-description:  >
+  - Z. Rafii and B. Pardo, “REpeating Pattern Extraction Technique (REPET): A simple method for music/voice separation,” IEEE Trans. ASLP, vol. 21, no. 1, pp. 71–82, January 2013.
+  - A. Liutkus, Z. Rafii, R. Badeau, B. Pardo, and G. Richard, “Adaptive filtering for music/voice separation exploiting the repeating musical structure,” in Proc. ICASSP, Mar. 2012, pp. 53–56.
+  - Z. Rafii and B. Pardo, “Music/voice separation using the similarity matrix,” in Proc. ISMIR, Oct. 2012, pp. 583–588.
+description: 
