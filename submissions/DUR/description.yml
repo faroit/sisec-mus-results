@@ -1,11 +1,11 @@
-method_name:  Durrien
+method_name:  Durrieu
 short:        DUR
-authors:
-affiliation:
-email:
+authors:  Jean-Louis Durrieu, Bertrand David, Gaël Richard
+affiliation: 	EPFL, Télécom ParisTech
+email: jean-louis.durrieu@epfl.ch
 is_supervised:      False
 uses_augmentation:  False
+code: https://github.com/wslihgt/pyfasst
 references:
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2016
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2015
+  - J.-L. Durrieu, B. David, and G. Richard, “A musically motivated mid-level repre- sentation for pitch estimation and musical audio source separation,” IEEE Journal on Selected Topics on Signal Processing, vol. 5, no. 6, pp. 1180–1191, Oct. 2011.
 description:  >
