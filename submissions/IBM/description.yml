@@ -6,6 +6,4 @@ email:
 is_supervised:      True
 uses_augmentation:  False
 references:
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2016
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2015
-description:  >
+description: 
