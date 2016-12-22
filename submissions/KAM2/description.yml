@@ -1,11 +1,10 @@
 method_name:  Liutkus2
 short:        KAM2
-authors:
-affiliation:
-email:
+authors:            Antoine Liutkus, Derry Fitzgerald, Zafar Rafii
+affiliation:        Inria, Villers-l`es-Nancy, France
+email:              antoine.liutkus@inria.fr
 is_supervised:      False
 uses_augmentation:  False
 references:
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2016
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2015
+  - A. Liutkus, D. FitzGerald, Z. Rafii, and L. Daudet, “Scalable audio separation with light kernel additive modelling,” in Proc. ICASSP, Apr. 2015, pp. 76–80
 description:  >
