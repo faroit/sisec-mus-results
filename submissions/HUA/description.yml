@@ -1,11 +1,11 @@
 method_name:  Huang
 short:        HUA
-authors:
-affiliation:
-email:
+authors: Po-Sen Huang, Scott Deeann Chen, Paris Smaragdis, Mark Hasegawa-Johnson
+affiliation: University of Illinois at Urbana-Champaign, USA
+email: huang146@illinois.edu
+code: https://github.com/posenhuang/singingvoiceseparationrpca
 is_supervised:      False
 uses_augmentation:  False
 references:
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2016
-  - A. List, Of. Authors, Proceedings of Lorem Ipsum, 2015
-description:  >
+  - P. Huang, S. Chen, P. Smaragdis, and M. Hasegawa-Johnson, “Singing-voice separation from monaural recordings using robust principal component analysis,” in Proc. ICASSP, Mar. 2012, pp. 57–60.
+description: 
