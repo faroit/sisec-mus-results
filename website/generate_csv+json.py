@@ -18,6 +18,9 @@ if __name__ == '__main__':
 
     df = pd.read_pickle(args.result_file)
 
+    # remove these tracks for the website for now
+    df = df.query('track_id != 36 and track_id != 37')
+
     # aggregate over each method and track, to remove the sample column
     # this results in less columns and should speed up the plotting
     df = df.groupby(
