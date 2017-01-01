@@ -1,8 +1,9 @@
 method_name:        Long_method_name_without_spaces
 short:              XYZ1
-authors:            A. List, Of. Authors
+authors:            A. List, O.F. Authors
 affiliation:        University of Lorem Ipsum
 email:              contact@author.com
+code:               http://github.com/my/repo
 is_supervised:      True
 uses_augmentation:  True
 references:
