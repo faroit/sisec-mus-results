@@ -4,6 +4,7 @@ authors:            Stefan Uhlich, Marcello Porcu, Franck Giron, Michael Enenkl,
 affiliation:        Sony Corporation
 email:              stefan.uhlich@eu.sony.com, yuhki.mitsufuji@jp.sony.com
 is_supervised:      True
+code: 
 uses_augmentation:  True
 references:
   - S. Uhlich, F. Giron, and Y. Mitsufuji. "Deep neural network based instrument extraction from music." ICASSP, 2015.

@@ -1,6 +1,6 @@
 method_name:  Ozerov
 short:        OZE
-authors:      Alexey Ozerov, Emmanuel Vincent, Frédéric Bimbot 
+authors:      Alexey Ozerov, Emmanuel Vincent, Frédéric Bimbot
 affiliation:  INRIA, Rennes, France
 email:        Alexey.Ozerov@technicolor.com
 is_supervised:      False
@@ -8,4 +8,4 @@ uses_augmentation:  False
 code: http://bass-db.gforge.inria.fr/fasst/
 references:
   - A. Ozerov, E. Vincent, and F. Bimbot, “A general flexible framework for the handling of prior information in audio source separation,” IEEE Trans. ASLP, vol. 20, no. 4, pp. 1118–1133, Oct. 2012.
-description: 
+description: >

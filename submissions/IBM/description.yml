@@ -1,9 +1,12 @@
 method_name:        Ideal_Binary_Mask
 short:              IBM
-authors:
-affiliation:
-email:
+authors:            Ideal Binary Mask
+affiliation:        .
+email:              .
+code:
 is_supervised:      True
 uses_augmentation:  False
 references:
-description: 
+    -
+description:
+    Ideal Binary Mask

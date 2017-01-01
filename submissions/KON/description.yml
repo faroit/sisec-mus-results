@@ -4,6 +4,7 @@ authors:            Qiuqiang Kong
 affiliation:        CVSSP, University of Surrey
 email:              q.kong@surrey.ac.uk
 is_supervised:      True
+code: 
 uses_augmentation:  False
 references:
   - Huang, Po Sen, et al. Joint optimization of masks and deep recurrent neural networks for monaural source separation.

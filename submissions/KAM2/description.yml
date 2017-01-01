@@ -3,6 +3,7 @@ short:        KAM2
 authors:            Antoine Liutkus, Derry Fitzgerald, Zafar Rafii
 affiliation:        Inria, Villers-l`es-Nancy, France
 email:              antoine.liutkus@inria.fr
+code: 
 is_supervised:      False
 uses_augmentation:  False
 references:

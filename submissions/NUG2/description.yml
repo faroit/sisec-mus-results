@@ -3,6 +3,7 @@ short:              NUG2
 authors:            Aditya Arie Nugraha, Antoine Liutkus, Emmanuel Vincent
 affiliation:        Inria
 email:              aditya.nugraha@inria.fr
+code: 
 is_supervised:      True
 uses_augmentation:  False
 references:

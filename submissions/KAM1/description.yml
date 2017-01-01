@@ -3,8 +3,9 @@ short:              KAM1
 authors:            Antoine Liutkus, Derry Fitzgerald, Zafar Rafii
 affiliation:        Inria, Villers-l`es-Nancy, France
 email:              antoine.liutkus@inria.fr
+code:
 is_supervised:      False
 uses_augmentation:  False
 references:
   - A. Liutkus, D. FitzGerald, Z. Rafii, and L. Daudet, “Scalable audio separation with light kernel additive modelling,” in Proc. ICASSP, Apr. 2015, pp. 76–80
-description:
+description: >

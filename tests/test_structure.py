@@ -12,6 +12,9 @@ def schema():
         'authors': {'type': 'string'},
         'short': {'type': 'string', 'maxlength': 4},
         'affiliation': {'type': 'string'},
+        'is_supervised': {'type': 'boolean'},
+        'uses_augmentation': {'type': 'boolean'},
+        'references': {'type': 'list'},
         'email': {'type': 'string'},
         'description': {'type': 'string'},
     }
@@ -58,4 +61,5 @@ def test_descriptions(submissions_dir, submission, schema):
 
     stream = file(description_file, 'r')
     document = yaml.load(stream)
+    v.allow_unknown = True
     assert v.validate(document), v.errors

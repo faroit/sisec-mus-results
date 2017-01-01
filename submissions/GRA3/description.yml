@@ -3,7 +3,7 @@ short:              GRA3
 authors:            Emad M. Grais, Gerard Roma, Andrew J. R. Simpson, Mark D. Plumbley
 affiliation:        University of Surrey, United Kingdom
 email:              grais@surrey.ac.uk
-code:
+code: 
 is_supervised:      True
 uses_augmentation:  True
 references:

@@ -3,6 +3,7 @@ short:              JEO1
 authors:            Il-Young Jeong and Kyogu Lee
 affiliation:        MARG, Seoul National University
 email:              finejuly@snu.ac.kr
+code: 
 is_supervised:      True
 uses_augmentation:  False
 references:

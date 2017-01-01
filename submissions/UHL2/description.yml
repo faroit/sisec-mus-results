@@ -4,6 +4,7 @@ authors:            Stefan Uhlich, Marcello Porcu, Franck Giron, Michael Enenkl,
 affiliation:        Sony Corporation
 email:              stefan.uhlich@eu.sony.com, yuhki.mitsufuji@jp.sony.com
 is_supervised:      True
+code: 
 uses_augmentation:  True
 references:
   - S. Uhlich, M. Porcu, F. Giron, M. Enenkl, T. Kemp, Y. Mitsufuji, N. Takahashi, Combining DNNs for Enhanced Music Source Separation, to appear

@@ -12,7 +12,7 @@ def load_track_list():
     tracklist = ['']*101
     csv_file = 'tracklist.csv'
     with open(csv_file, 'rt') as csvfile:
-        spamreader = csv.reader(csvfile, delimiter=';')
+        spamreader = csv.reader(csvfile, delimiter=',')
         # skip header
         next(spamreader)
         for i, row in enumerate(spamreader):

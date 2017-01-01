@@ -8,4 +8,4 @@ is_supervised:      False
 uses_augmentation:  False
 references:
   - P. Huang, S. Chen, P. Smaragdis, and M. Hasegawa-Johnson, “Singing-voice separation from monaural recordings using robust principal component analysis,” in Proc. ICASSP, Mar. 2012, pp. 57–60.
-description: 
+description: >
