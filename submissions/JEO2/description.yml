@@ -7,6 +7,12 @@ code:
 is_supervised:      True
 uses_augmentation:  False
 references:
-  - I.-Y. Jeong and K. Lee, Singing voice separation using RPCA with weighted l1-norm (in preparation for LVAICA 2017. title may be modified)
-description:  >
-  apply RPCA with weighted l1 norm (wRPCA), whose weight parameter (lambda) between nuclear norm and l1 norm is set differently for each matrix component. we choose the value of lambda for each frequency bin f to be var(A(f))/var(V(f)), where A and V are the spectrogram of accompaniment and singing voice, respectively. A two-stage approach is applied. At the first stage, singing voice and accompaniments are separated using wRPCA, and vocal activity is detected from the separated singing voice. After that, those are separated again using wRPCA with voice activity information.
+  - I.-Y. Jeong and K. Lee, Singing voice separation using RPCA with weighted l1-norm
+description:
+  apply RPCA with weighted l1 norm (wRPCA), whose weight parameter (lambda) between 
+  nuclear norm and l1 norm is set differently for each matrix component. We choose the 
+  value of lambda for each frequency bin f to be var(A(f))/var(V(f)), where A and V 
+  are the spectrogram of accompaniment and singing voice, respectively. A two-stage 
+  approach is applied. At the first stage, singing voice and accompaniments are 
+  separated using wRPCA, and vocal activity is detected from the separated singing voice. 
+  After that, those are separated again using wRPCA with voice activity information.
