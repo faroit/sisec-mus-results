@@ -3,9 +3,8 @@ short:              CHA
 authors:            Pritish Chandna, Jordi Janer, Marius Miron
 affiliation:        Music Technology Group, Universitat Pompeu Fabra Barcelona
 email:              marius.miron@upf.edu
-code:
+code:               https://github.com/MTG/DeepConvSep
 is_supervised:      True
 uses_augmentation:  False
-references:
-    -
-description: >
+references:  - P. Chandna, M. Miron, J. Janer, and E. Gomez, “Monoaural audio source separation using deep convolutional neural networks,”,  13th International Conference on Latent Variable Analysis and Signal Separation (LVA/ICA 2017).
+description: We introduce a low-latency monaural source separation framework using a Convolutional Neural Network (CNN). We use a CNN to estimate time-frequency soft masks which are applied for source separation. We evaluate the performance of the neural network on a database comprising of musical mixtures of three instruments: voice, drums, bass as well as other instruments which vary from song to song. The proposed architecture is compared to a Multilayer Perceptron (MLP), achieving on-par results and a significant improvement in processing time. The algorithm was submitted to source separation evaluation campaigns to test efficiency, and achieved competitive results.

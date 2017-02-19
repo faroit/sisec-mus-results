@@ -9,4 +9,4 @@ code:               https://github.com/aliutkus/commonfate
 references:
   - F.-R. Stöter, A. Liutkus, R. Badeau, B. Edler, and P. Magron, “Common Fate Model for Unison source Separation,” in Proc. ICASSP, 2016.
 description:  >
-  Deep neural network (DNN) based method using patched overlapped STFT (See GFT) frames on input and output.
+  This approach is based on a Deep neural network (DNN) feed-forward architecture using patched overlapped STFT (See GFT) frames on input and output. In contrast to methods like UHL1, our proposed methd uses temporal context for both, input and output, which leads to improvement in temporal continuity.

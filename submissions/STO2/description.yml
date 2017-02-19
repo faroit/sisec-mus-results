@@ -10,4 +10,4 @@ references:
   - F.-R. Stöter, A. Liutkus, R. Badeau, B. Edler, and P. Magron, “Common Fate Model for Unison source Separation,” in Proc. ICASSP, 2016.
 description:  >
   Deep neural network (DNN) based method using Common Fate Transform
-  representation on network input and output.
+  representation (CFT) on network input and output. The CFT representation includes phase information as well. In contrast to methods like UHL1, our proposed methd uses temporal context for both, input and output, which leads to improvement in temporal continuity. 
