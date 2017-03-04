@@ -4,10 +4,10 @@ authors:            Stefan Uhlich, Marcello Porcu, Franck Giron, Michael Enenkl,
 affiliation:        Sony Corporation
 email:              stefan.uhlich@eu.sony.com, yuhki.mitsufuji@jp.sony.com
 is_supervised:      True
-code: 
+code:
 uses_augmentation:  True
 references:
-  - S. Uhlich, M. Porcu, F. Giron, M. Enenkl, T. Kemp, Y. Mitsufuji, N. Takahashi, Combining DNNs for Enhanced Music Source Separation, to appear
+  - S. Uhlich, M. Porcu, F. Giron, M. Enenkl, T. Kemp, N. Takahashi and Y. Mitsufuji. "Improving Music Source Separation based on Deep Neural Networks through Data Augmentation and Network Blending." ICASSP, 2017
   - A. A. Nugraha, A. Liutkus, and E. Vincent. "Multichannel music separation with deep neural networks." EUSIPCO, 2016.
 description:  >
   In our second approach, we use a (stereo) recurrent neural network architecture with bi-directional LSTM (BLSTM) layers. It is trained solemnly on SiSEC DEV and uses data augmentation to avoid overfitting problems. In particular, we use the following augmentations (done on-the-fly to prepare one mini-batch):
