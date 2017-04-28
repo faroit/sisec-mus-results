@@ -71,7 +71,7 @@ if __name__ == '__main__':
     df['genre'] = df.apply(lambda x: trackdict[x['track_id']]['genre'], axis=1)
     df['title'] = df.apply(lambda x: trackdict[x['track_id']]['title'], axis=1)
 
-    df['is_dev'] = np.where(df['track_id'] >= 51, 0, 1)
+    df['is_dev'] = np.where(df['track_id'] >= 51, 1, 0)
     df['target_id'] = df['target_name'].astype('category').cat.codes
     df['method_id'] = df['estimate_name'].astype('category').cat.codes
     df['metric_id'] = df['metric'].astype('category').cat.codes
