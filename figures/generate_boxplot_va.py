@@ -1,5 +1,4 @@
 import pandas as pd
-import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
 import argparse
@@ -7,7 +6,7 @@ import numpy as np
 import math
 from matplotlib.transforms import BlendedGenericTransform
 import matplotlib as mpl
-import matplotlib.patches as mpatches
+from matplotlib import gridspec
 
 
 def discrete_cmap(N, base_cmap=None):
@@ -54,7 +53,7 @@ if __name__ == '__main__':
     fig_width = fig_width_pt * inches_per_pt
     # height in inches
     fig_height = fig_width * golden_mean
-    fig_size = np.array([fig_width*6, fig_height*2])
+    fig_size = np.array([fig_width*5, fig_height*2])
 
     params = {
         'backend': 'ps',
@@ -92,7 +91,6 @@ if __name__ == '__main__':
     # fetch track_id
     df[['track_id']] = df[['track_id']].apply(pd.to_numeric)
     df['subset'] = np.where(df['track_id'] >= 51, 'Dev', 'Test')
-
     # show vocals/acc for now
     df = df[df.target_name.isin(['vocals', 'accompaniment'])].dropna()
     df = df[df.subset == 'Test'].dropna()
@@ -112,80 +110,167 @@ if __name__ == '__main__':
         'font.serif': 'ptmrr8re',
     })
 
-    # sort by median of test score
-    df_sort_by = df[(df.metric == "SDR") & (df.subset == "Test")]
-
-    estimate_tuples = df_sort_by.score.groupby([df_sort_by.estimate_name, df_sort_by.is_supervised]).median().order().index.tolist()
-    estimate_names, estimate_supervised = zip(*estimate_tuples)
-
+    # get 2 discrete colors used for the labels (4 because of b/w)
     color_list, color_tuples = discrete_cmap(4, 'cubehelix_r')
 
     for measure in measures:
+        f = plt.figure(figsize=fig_size)
+        gs = gridspec.GridSpec(1, 3, width_ratios=[8, 15, 1])
 
-        df_measure = df[df.metric == measure]
+        # create an unsupervised methods and a supervised methods axis
+        ax_u = plt.subplot(gs[0])
+        ax_s = plt.subplot(gs[1], sharey=ax_u)
+        ax_i = plt.subplot(gs[2], sharey=ax_u)
 
-        f, ax = plt.subplots(1, 1, figsize=fig_size)
+        df_u = df[(df.metric == measure) & ~df.is_supervised]
+        df_s = df[(df.metric == measure) & df.is_supervised & (df.estimate_name != 'IBM')]
+        df_i = df[(df.metric == measure) & df.is_supervised & (df.estimate_name == 'IBM')]
 
-        ax = sns.boxplot(
+        # sort by median of test score
+        df_u_sort_by = df_u[
+            (df_u.metric == measure) &
+            (df_u.subset == "Test") &
+            (df_u.target_name == "vocals")
+        ]
+
+        estimate_names_u = df_u_sort_by.score.groupby(
+            df_u_sort_by.estimate_name
+        ).median().order().index.tolist()
+
+        ax_u = sns.boxplot(
             'estimate_name',
             "score",
             "target_name",
             # hue_order=['Dev', 'Test'],
-            data=df_measure,
-            order=estimate_names,
+            data=df_u,
+            order=estimate_names_u,
             showmeans=False,
             notch=True,
             showfliers=False,
             width=0.75,
-            ax=ax,
+            ax=ax_u,
             palette="cubehelix_r"
         )
 
-        plt.setp(ax.get_xticklabels(), fontsize=19)
+        df_u.groupby(df_u.target_name).score.mean().vocals
 
-        for i, (is_supervised, xtick) in enumerate(
-            zip(estimate_supervised, ax.get_xticklabels())
-        ):
-            if is_supervised:
-                box = ax.artists[i * 2]
-                box.set(hatch='////', edgecolor='white', linewidth=0)
-                box = ax.artists[i * 2 + 1]
-                box.set(hatch='////', edgecolor='white', linewidth=0)
-            else:
-                box = ax.artists[i * 2]
-                box.set(linewidth=0)
-                box = ax.artists[i * 2 + 1]
-                box.set(linewidth=0)
+        # sort by median of test score
+        df_s_sort_by = df_s[
+            (df_s.metric == measure) &
+            (df_s.subset == "Test") &
+            (df_s.target_name == "vocals")
+        ]
+        estimate_names_s = df_s_sort_by.score.groupby(
+            df_s_sort_by.estimate_name
+        ).median().order().index.tolist()
 
-        ax.set_xlabel('')
-        ax.set_ylabel(measure + ' in dB')
-        ax.set_ylim([-10, 18.5])
-
-        pv = mpatches.Patch(
-            facecolor=color_tuples[1]
-        )
-        pa = mpatches.Patch(
-            facecolor=color_tuples[2]
-        )
-
-        pu = mpatches.Patch(
-            hatch='////', edgecolor='white', facecolor='black'
-        )
-        ps = mpatches.Patch(
-            edgecolor='white', facecolor="black"
+        ax_s = sns.boxplot(
+            'estimate_name',
+            "score",
+            "target_name",
+            # hue_order=['Dev', 'Test'],
+            data=df_s,
+            order=estimate_names_s,
+            showmeans=False,
+            notch=True,
+            showfliers=False,
+            width=0.75,
+            ax=ax_s,
+            palette="cubehelix_r"
         )
 
-        leg = plt.legend(
-            [pv, pa, pu, ps],
-            ['Vocals', 'Accompaniment', 'Unsupervised', 'Supervised'],
-            ncol=2,
-            loc='upper left',
+        ax_i = sns.boxplot(
+            'estimate_name',
+            "score",
+            "target_name",
+            # hue_order=['Dev', 'Test'],
+            data=df_i,
+            showmeans=False,
+            notch=True,
+            showfliers=False,
+            width=0.75,
+            ax=ax_i,
+            palette="cubehelix_r"
+        )
+
+        if measure == 'SDR':
+            ax_u.set_ylim([-9,  18.5])
+
+        if measure == 'SIR':
+            ax_u.set_ylim([-10,  28])
+
+        if measure == 'SAR':
+            ax_u.set_ylim([-5,  25])
+
+        ax_u.legend_.remove()
+        ax_i.legend_.remove()
+        ax_s.legend_.remove()
+
+        # get labels and handles from ax1
+        h, l = ax_u.get_legend_handles_labels()
+
+        plt.figlegend(
+            h, l,
+            loc='upper center', ncol=2, labelspacing=0.,
+            bbox_to_anchor=(0.5, 1.15),
             bbox_transform=BlendedGenericTransform(
-                f.transFigure, ax.transAxes
-            ),
+                f.transFigure, ax_u.transAxes
+            )
         )
 
-        ax.add_artist(leg)
+        ax_u.axhline(
+            y=df_u.groupby(df_u.target_name).score.median().vocals,
+            color=color_tuples[1],
+            linestyle='dashed',
+            linewidth=2
+        )
+
+        ax_u.axhline(
+            y=df_u.groupby(df_u.target_name).score.median().accompaniment,
+            color=color_tuples[2],
+            linestyle='dashed',
+            linewidth=2
+        )
+
+        ax_s.axhline(
+            y=df_s.groupby(df_s.target_name).score.median().vocals,
+            color=color_tuples[1],
+            linestyle='dashed',
+            linewidth=2
+        )
+
+        ax_s.axhline(
+            y=df_s.groupby(df_s.target_name).score.median().accompaniment,
+            color=color_tuples[2],
+            linestyle='dashed',
+            linewidth=2
+        )
+
+        ax_i.axhline(
+            y=df_i.groupby(df_i.target_name).score.median().vocals,
+            color=color_tuples[1],
+            linestyle='dashed',
+            linewidth=2
+        )
+
+        ax_i.axhline(
+            y=df_i.groupby(df_i.target_name).score.median().accompaniment,
+            color=color_tuples[2],
+            linestyle='dashed',
+            linewidth=2
+        )
+
+        ax_u.set_xlabel('')
+        ax_s.set_xlabel('')
+        ax_i.set_xlabel('')
+
+        ax_s.set_ylabel('')
+        ax_i.set_ylabel('')
+
+        plt.setp(ax_s.get_yticklabels(), visible=False)
+        plt.setp(ax_i.get_yticklabels(), visible=False)
+
+        ax_u.set_ylabel(measure + ' in dB')
 
         f.set_tight_layout(True)
         f.savefig(

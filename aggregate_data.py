@@ -182,6 +182,8 @@ if __name__ == '__main__':
     data = aggregrate(data)
 
     # add fix because track 43 has an error in the download
-    data.df = data.df.query('track_id != 43')
+    data.df = data.df.query(
+        'track_id != 36 and track_id != 37 and track_id != 44 and track_id != 43'
+    )
 
     data.to_pickle("sisec_mus_2017.pandas")
