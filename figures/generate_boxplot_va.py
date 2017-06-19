@@ -53,7 +53,7 @@ if __name__ == '__main__':
     fig_width = fig_width_pt * inches_per_pt
     # height in inches
     fig_height = fig_width * golden_mean
-    fig_size = np.array([fig_width*5, fig_height*2])
+    fig_size = np.array([fig_width*5, fig_height*6])
 
     params = {
         'backend': 'ps',
@@ -72,7 +72,7 @@ if __name__ == '__main__':
 
     df = pd.read_pickle(args.result_file)
 
-    measures = ['SDR', 'ISR', 'SIR', 'SAR']
+    measures = ['SDR', 'SIR', 'SAR']
 
     # reshape data
     df = pd.melt(
@@ -113,23 +113,23 @@ if __name__ == '__main__':
     # get 2 discrete colors used for the labels (4 because of b/w)
     color_list, color_tuples = discrete_cmap(4, 'cubehelix_r')
 
-    for measure in measures:
-        f = plt.figure(figsize=fig_size)
-        gs = gridspec.GridSpec(1, 3, width_ratios=[8, 15, 1])
+    f = plt.figure(figsize=fig_size)
+    gs = gridspec.GridSpec(3, 3, width_ratios=[8, 15, 1])
+
+    for i, measure in enumerate(measures):
 
         # create an unsupervised methods and a supervised methods axis
-        ax_u = plt.subplot(gs[0])
-        ax_s = plt.subplot(gs[1], sharey=ax_u)
-        ax_i = plt.subplot(gs[2], sharey=ax_u)
+        ax_u = plt.subplot(gs[i, 0])
+        ax_s = plt.subplot(gs[i, 1], sharey=ax_u)
+        ax_i = plt.subplot(gs[i, 2], sharey=ax_u)
 
-        df_u = df[(df.metric == measure) & ~df.is_supervised]
-        df_s = df[(df.metric == measure) & df.is_supervised & (df.estimate_name != 'IBM')]
-        df_i = df[(df.metric == measure) & df.is_supervised & (df.estimate_name == 'IBM')]
+        df_u = df[~df.is_supervised]
+        df_s = df[df.is_supervised & (df.estimate_name != 'IBM')]
+        df_i = df[df.is_supervised & (df.estimate_name == 'IBM')]
 
         # sort by median of test score
         df_u_sort_by = df_u[
-            (df_u.metric == measure) &
-            (df_u.subset == "Test") &
+            (df_u.metric == "SDR") &
             (df_u.target_name == "vocals")
         ]
 
@@ -137,6 +137,7 @@ if __name__ == '__main__':
             df_u_sort_by.estimate_name
         ).median().order().index.tolist()
 
+        df_u = df_u[df_u.metric == measure]
         ax_u = sns.boxplot(
             'estimate_name',
             "score",
@@ -156,13 +157,14 @@ if __name__ == '__main__':
 
         # sort by median of test score
         df_s_sort_by = df_s[
-            (df_s.metric == measure) &
-            (df_s.subset == "Test") &
+            (df_s.metric == "SDR") &
             (df_s.target_name == "vocals")
         ]
         estimate_names_s = df_s_sort_by.score.groupby(
             df_s_sort_by.estimate_name
         ).median().order().index.tolist()
+
+        df_s = df_s[df_s.metric == measure]
 
         ax_s = sns.boxplot(
             'estimate_name',
@@ -178,6 +180,8 @@ if __name__ == '__main__':
             ax=ax_s,
             palette="cubehelix_r"
         )
+
+        df_i = df_i[df_i.metric == measure]
 
         ax_i = sns.boxplot(
             'estimate_name',
@@ -205,18 +209,6 @@ if __name__ == '__main__':
         ax_u.legend_.remove()
         ax_i.legend_.remove()
         ax_s.legend_.remove()
-
-        # get labels and handles from ax1
-        h, l = ax_u.get_legend_handles_labels()
-
-        plt.figlegend(
-            h, l,
-            loc='upper center', ncol=2, labelspacing=0.,
-            bbox_to_anchor=(0.5, 1.15),
-            bbox_transform=BlendedGenericTransform(
-                f.transFigure, ax_u.transAxes
-            )
-        )
 
         ax_u.axhline(
             y=df_u.groupby(df_u.target_name).score.median().vocals,
@@ -272,9 +264,24 @@ if __name__ == '__main__':
 
         ax_u.set_ylabel(measure + ' in dB')
 
-        f.set_tight_layout(True)
-        f.savefig(
-            measure + ".pdf",
-            bbox_inches='tight',
-            dpi=300
+    # get labels and handles from ax1
+    ax_u.set_xlabel('Unsupervised')
+    ax_s.set_xlabel('Supervised')
+
+    h, l = ax_u.get_legend_handles_labels()
+
+    plt.figlegend(
+        h, l,
+        loc='upper center', ncol=2, labelspacing=0.,
+        bbox_to_anchor=(0.5, 3.5),
+        bbox_transform=BlendedGenericTransform(
+            f.transFigure, ax_u.transAxes
         )
+    )
+
+    f.set_tight_layout(True)
+    f.savefig(
+        "evaluation.pdf",
+        bbox_inches='tight',
+        dpi=300
+    )
