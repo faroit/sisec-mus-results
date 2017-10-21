@@ -110,7 +110,7 @@ df_sort_by = df_sdr_vocals_test[
 
 sorted_estimates = df_sort_by.score.groupby(
    df_sort_by.estimate_name
-).median().order().index.tolist()
+).median().sort_values().index.tolist()
 
 sorted_indices = [axis_labels.index(label) for label in sorted_estimates]
 
