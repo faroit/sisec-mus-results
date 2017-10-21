@@ -2,4 +2,4 @@ pandas
 matplotlib
 seaborn
 numpy
-rpy2
+rpy2<2.9.0
