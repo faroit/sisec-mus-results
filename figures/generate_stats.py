@@ -9,13 +9,27 @@ import scipy.stats
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
 import math
+import argparse
+
 
 pandas2ri.activate()
 # import R's "base" package
 base = importr('base')
 
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
 
-df = pd.read_pickle("../sisec_mus_2017.pandas")
+    parser.add_argument(
+        'result_file',
+        type=str,
+        help='Pandas results'
+    )
+
+    args = parser.parse_args()
+
+
+df = pd.read_pickle(args.result_file)
+
 measures = ['SDR', 'ISR', 'SIR', 'SAR']
 
 
