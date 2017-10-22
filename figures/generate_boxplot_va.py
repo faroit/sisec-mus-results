@@ -135,7 +135,7 @@ if __name__ == '__main__':
 
         estimate_names_u = df_u_sort_by.score.groupby(
             df_u_sort_by.estimate_name
-        ).median().order().index.tolist()
+        ).median().sort_values().index.tolist()
 
         df_u = df_u[df_u.metric == measure]
         ax_u = sns.boxplot(
@@ -162,7 +162,7 @@ if __name__ == '__main__':
         ]
         estimate_names_s = df_s_sort_by.score.groupby(
             df_s_sort_by.estimate_name
-        ).median().order().index.tolist()
+        ).median().sort_values().index.tolist()
 
         df_s = df_s[df_s.metric == measure]
 
