@@ -55,7 +55,7 @@ if __name__ == '__main__':
 
     # Encode names into IDs
     df['track_id'] = df['track_id'].astype(np.int16)
-    df['is_dev'] = np.where(df['track_id'] >= 51, 0, 1)
+    df['is_dev'] = np.where(df['track_id'] >= 51, 1, 0)
     df['target_id'] = df['target_name'].astype('category').cat.codes
     df['method_id'] = df['estimate_name'].astype('category').cat.codes
     df['metric_id'] = df['metric'].astype('category').cat.codes
