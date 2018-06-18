@@ -10,3 +10,4 @@ install the python2.7 requirements using `pip install -r requirements.txt`
 
 * `python aggregate_data.py` generates a pandas data frame with all results (this converts the submissions from matlab to pandas).
 
+* [Download aggregated Pandas Dataframe](https://github.com/faroit/sisec-mus-results/releases/download/1.0/sisec_mus_2017.pandas)
